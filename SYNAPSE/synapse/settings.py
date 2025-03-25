@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'store.apps.StoreConfig',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 ]
 
 MIDDLEWARE = [
@@ -48,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'synapse.urls'
@@ -129,3 +133,48 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Authentication Backends
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of allauth
+    'django.contrib.auth.backends.ModelBackend',
+    # allauth specific authentication methods
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+# Allauth Settings
+SITE_ID = 1  # Required for allauth
+
+# Authentication Method
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'  # Allow login with both username and email
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_USERNAME_MIN_LENGTH = 4  # Minimum username length
+
+# Email Verification
+ACCOUNT_EMAIL_VERIFICATION = 'optional'  # 'mandatory', 'optional', or 'none'
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True  # Confirm email immediately when clicking verification link
+
+# Signup
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True  # Require password confirmation
+ACCOUNT_SIGNUP_FORM_CLASS = None  # Optional: Add custom signup form
+
+# Login/Logout
+LOGIN_REDIRECT_URL = '/'  # Where to redirect after login
+LOGOUT_REDIRECT_URL = '/'  # Where to redirect after logout
+ACCOUNT_LOGOUT_ON_GET = True  # Logout directly when visiting /accounts/logout/
+
+# Session
+ACCOUNT_SESSION_REMEMBER = True  # "Remember me" functionality
+
+# Email Backend (Development)
+EMAIL_BACKEND = 'django.synapse.mail.backends.console.EmailBackend'
+
+# For production you would use:
+# EMAIL_BACKEND = 'django.synapse.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'your-smtp-server.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = 'your-email@example.com'
+# EMAIL_HOST_PASSWORD = 'your-email-password'
+# DEFAULT_FROM_EMAIL = 'your-email@example.com'
