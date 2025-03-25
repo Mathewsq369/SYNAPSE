@@ -77,15 +77,16 @@
 	 
 	    </ul>
 	    <div class="form-inline my-2 my-lg-0">
-			<div class="d-flex">
-                {% if user.is_authenticated %}
-					<p>Hello, {{user.username}}</p>
-                    <a href="{% url 'account_logout' %}" class="btn btn-outline-danger me-2">Logout</a>
-                {% else %}
-                    <a href="{% url 'account_login' %}" class="btn btn-outline-primary me-2">Login</a>
-                    <a href="{% url 'account_signup' %}" class="btn btn-primary">Sign Up</a>
-                {% endif %}
-            </div>
+			<div class="d-flex align-items-center">
+				{% if user.is_authenticated %}
+					<p class="me-7 mb-0">Hello, {{ user.username }}</p>
+					<a href="{% url 'account_logout' %}" class="btn btn-outline-danger">Logout</a>
+				{% else %}
+					<a href="{% url 'account_login' %}" class="btn btn-outline-primary me-2">Login</a>
+					<a href="{% url 'account_signup' %}" class="btn btn-primary">Sign Up</a>
+				{% endif %}
+			</div>
+			
 	     	<a href="{% url 'cart' %}">
 	    		<img  id="cart-icon" src="{% static 'images/cart.png' %}">
 	    	</a>
