@@ -168,10 +168,10 @@ ACCOUNT_LOGOUT_ON_GET = True  # Logout directly when visiting /accounts/logout/
 ACCOUNT_SESSION_REMEMBER = True  # "Remember me" functionality
 
 # Email Backend (Development)
-EMAIL_BACKEND = 'django.synapse.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # For production you would use:
-# EMAIL_BACKEND = 'django.synapse.mail.backends.smtp.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_HOST = 'your-smtp-server.com'
 # EMAIL_PORT = 587
 # EMAIL_USE_TLS = True
