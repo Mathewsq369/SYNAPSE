@@ -79,6 +79,7 @@
 	    <div class="form-inline my-2 my-lg-0">
 			<div class="d-flex">
                 {% if user.is_authenticated %}
+					<p>Hello, {{user.username}}</p>
                     <a href="{% url 'account_logout' %}" class="btn btn-outline-danger me-2">Logout</a>
                 {% else %}
                     <a href="{% url 'account_login' %}" class="btn btn-outline-primary me-2">Login</a>
