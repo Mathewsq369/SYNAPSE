@@ -42,6 +42,9 @@ def cookieCart(request):
 	return {'cartItems':cartItems ,'order':order, 'items':items}
 
 def cartData(request):
+	#remove null objects
+	OrderItem.objects.filter(product__isnull=True).delete()
+	
 	if request.user.is_authenticated:
 		customer = request.user.customer
 		order, created = Order.objects.get_or_create(customer=customer, complete=False)
