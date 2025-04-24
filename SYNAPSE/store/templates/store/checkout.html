@@ -72,7 +72,7 @@
 	<script src="https://www.paypal.com/sdk/js?client-id=AQq_wpI12kNEknk-DB4xG_K-tNMyBfgwXpQgViUarfplUu3JRTlByQBIjDojMZSmiUMqkX1RZ__OUR-Q&currency=USD&disable-funding=credit"></script>
 
 	<script>
-		var total = '{{ order.get_cart_total|floatformat:2 }}';  // Ensure it is formatted properly
+		var total = '{{ order.get_cart_total|floatformat:2 }}'; 
 	
 		paypal.Buttons({
 			style: {
